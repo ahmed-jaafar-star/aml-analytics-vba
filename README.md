@@ -17,7 +17,7 @@ Patterns they look for include funnel accounts (many senders, one receiver), tra
 
 ### WUReportAnalyzer.bas
 
-The core analysis. A settings form asks for the target countries (or `ALL COUNTRIES`), the thresholds, and which optional analyses to run.
+The core analysis. It starts with a settings window (`frmSettings`) that asks for the countries (default `All Countries`), whether accounts are measured by unique senders or by transactions, the red threshold (default 10), the optional agent analysis with its own metric and threshold (default 5), the Metaphone table (on by default), and whether the Arabic note lists only the suspicious transfers or all of them. The window builds its controls in code, and `clsBtn` handles the clicks on its two buttons.
 
 - **Primary country per account**: each receiving account is tied to the country where it got the most transfers, so one account isn't split across countries.
 - **Account risk**: counts transactions or unique senders per receiving account (your choice). At or above the threshold it's *Suspicious*; from 3 up to the threshold it's *Review*. Each table has totals, the number of countries, and the bank / wallet split.
@@ -83,8 +83,8 @@ A score of 2 or more goes to *Review*, 5 or more to *High risk*. Running it agai
 
 ## Setup
 
-1. In Excel press `Alt + F11`, then **File** → **Import File** for each file. Import them into `PERSONAL.XLSB` to use them in any workbook.
-2. The analyzer uses a settings form (`frmSettings`) and a class (`clsBtn`) that aren't in this repo yet. The other modules work on their own.
+1. In Excel press `Alt + F11`, then **File** → **Import File** for each `.bas`, `.frm` and `.cls` file. Import them into `PERSONAL.XLSB` to use them in any workbook.
+2. Keep `frmSettings.frx` in the same folder as `frmSettings.frm`. Excel reads it during the import.
 3. Run a macro with `Alt + F8`.
 
 Word is driven through late binding, so no extra references are needed.
